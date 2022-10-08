@@ -7,14 +7,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.util.Date;
 import java.util.List;
 
-@SpringBootApplication
-public class SpringJpaNoteApplication {
+//@SpringBootApplication
+public class SpringJDBCDemoApplication {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -22,7 +21,7 @@ public class SpringJpaNoteApplication {
     private PersonJdbcDao personJdbcDao;
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringJpaNoteApplication.class, args);
+        SpringApplication.run(SpringJDBCDemoApplication.class, args);
     }
 
     @Bean
@@ -34,8 +33,8 @@ public class SpringJpaNoteApplication {
             logger.info("User name susan -> {}", personJdbcDao.findByName("susan"));
             logger.info("User location amsterdam -> {}", personJdbcDao.findByLocation("amsterdam"));
             logger.info("Deleting User 10002 -> {}", personJdbcDao.deleteById(10002));
-            logger.info("Insert Person 10004 -> {}", personJdbcDao.insert(new Person("hyeonho", "anyang", new Date())));
-            logger.info("Update Person 10003 -> {}", personJdbcDao.update(new Person("james", "amsterdam", new Date())));
+            logger.info("Insert Person 10004 -> {}", personJdbcDao.insert(new Person(10004, "hyeonho", "anyang", new Date())));
+            logger.info("Update Person 10003 -> {}", personJdbcDao.update(new Person(10003, "james", "amsterdam", new Date())));
         };
     }
 
