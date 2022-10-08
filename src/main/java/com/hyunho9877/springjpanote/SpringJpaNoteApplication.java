@@ -31,6 +31,9 @@ public class SpringJpaNoteApplication {
             public void run(String... args) throws Exception {
                 List<Person> result = personJdbcDao.findAll();
                 logger.info("All users -> {}", result);
+                logger.info("User id 10001 -> {}", personJdbcDao.findById(10001));
+                logger.info("User name susan -> {}", personJdbcDao.findByName("susan"));
+                logger.info("User location amsterdam -> {}", personJdbcDao.findByLocation("amsterdam"));
             }
         };
     }
