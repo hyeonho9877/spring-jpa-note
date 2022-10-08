@@ -26,15 +26,13 @@ public class SpringJpaNoteApplication {
 
     @Bean
     public CommandLineRunner commandLineRunner() {
-        return new CommandLineRunner() {
-            @Override
-            public void run(String... args) throws Exception {
-                List<Person> result = personJdbcDao.findAll();
-                logger.info("All users -> {}", result);
-                logger.info("User id 10001 -> {}", personJdbcDao.findById(10001));
-                logger.info("User name susan -> {}", personJdbcDao.findByName("susan"));
-                logger.info("User location amsterdam -> {}", personJdbcDao.findByLocation("amsterdam"));
-            }
+        return args -> {
+            List<Person> result = personJdbcDao.findAll();
+            logger.info("All users -> {}", result);
+            logger.info("User id 10001 -> {}", personJdbcDao.findById(10001));
+            logger.info("User name susan -> {}", personJdbcDao.findByName("susan"));
+            logger.info("User location amsterdam -> {}", personJdbcDao.findByLocation("amsterdam"));
+            logger.info("Deleting User 10002 -> {}", personJdbcDao.deleteById(10002));
         };
     }
 
