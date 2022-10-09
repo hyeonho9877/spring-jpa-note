@@ -41,11 +41,10 @@ public class CourseRepository {
         em.persist(course2);
         em.flush();
 
-        // em.detach(course1);
-        // em.detach(course2);
-        em.clear();
         course1.setName("course1 updated");
         course2.setName("course2 updated");
+
+        em.refresh(course1);
         em.flush();
     }
 }
