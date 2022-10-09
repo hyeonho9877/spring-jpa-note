@@ -44,6 +44,13 @@ public class CourseRepository {
         course1.setName("course1 updated");
         course2.setName("course2 updated");
 
+
+        /*
+        attempt to throw DataIntegrityViolationException
+        Course courseNull = new Course(null);
+        em.persist(courseNull);
+        */
+
         em.refresh(course1);
         em.flush();
     }

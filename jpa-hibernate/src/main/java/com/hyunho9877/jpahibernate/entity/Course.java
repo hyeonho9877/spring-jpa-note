@@ -1,15 +1,19 @@
 package com.hyunho9877.jpahibernate.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
+//@Table(name = "CourseDetails")
 public class Course {
 
     @Id
     @GeneratedValue
     private Long id;
+
+    @Column(name = "full_name", nullable = false)
     private String name;
 
     protected Course() {
