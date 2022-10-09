@@ -1,6 +1,5 @@
 package com.hyunho9877.jpahibernate;
 
-import com.hyunho9877.jpahibernate.entity.Course;
 import com.hyunho9877.jpahibernate.repository.CourseRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,8 +23,7 @@ public class JpaHibernateApplication {
     @Bean
     public CommandLineRunner commandLineRunner() {
         return args -> {
-            Course course = courseRepository.findById(10001L);
-            logger.info("Course 10001 - > {}", course);
+            courseRepository.playWithEntityManager();
         };
     }
 
