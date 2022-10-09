@@ -23,7 +23,7 @@ public class JpaHibernateApplication {
     @Bean
     public CommandLineRunner commandLineRunner() {
         return args -> {
-
+            courseRepository.playWithEntityManager();
         };
     }
 

@@ -35,23 +35,10 @@ public class CourseRepository {
     }
 
     public void playWithEntityManager() {
-        Course course1 = new Course("course1");
-        em.persist(course1);
-        Course course2 = new Course("course2");
-        em.persist(course2);
-        em.flush();
+        Course course = new Course("course 1");
+        em.persist(course);
 
-        course1.setName("course1 updated");
-        course2.setName("course2 updated");
-
-
-        /*
-        attempt to throw DataIntegrityViolationException
-        Course courseNull = new Course(null);
-        em.persist(courseNull);
-        */
-
-        em.refresh(course1);
-        em.flush();
+        Course courseResult = findById(10001L);
+        courseResult.setName("course updated");
     }
 }
