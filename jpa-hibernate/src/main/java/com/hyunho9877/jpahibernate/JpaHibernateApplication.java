@@ -26,6 +26,7 @@ public class JpaHibernateApplication {
         return args -> {
             Course course = courseRepository.findById(10001L);
             logger.info("Course 10001 - > {}", course);
+            courseRepository.deleteById(10001L);
         };
     }
 
