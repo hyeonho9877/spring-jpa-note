@@ -1,6 +1,7 @@
 package com.hyunho9877.jpahibernate;
 
 import com.hyunho9877.jpahibernate.repository.CourseRepository;
+import com.hyunho9877.jpahibernate.repository.StudentRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,9 @@ public class JpaHibernateApplication {
 
     @Autowired
     private CourseRepository courseRepository;
+
+    @Autowired
+    private StudentRepository studentRepository;
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public static void main(String[] args) {
@@ -23,7 +27,7 @@ public class JpaHibernateApplication {
     @Bean
     public CommandLineRunner commandLineRunner() {
         return args -> {
-            courseRepository.playWithEntityManager();
+            studentRepository.saveStudentWithPassport();
         };
     }
 
