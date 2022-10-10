@@ -1,5 +1,6 @@
 package com.hyunho9877.jpahibernate.repository;
 
+import com.hyunho9877.jpahibernate.entity.Passport;
 import com.hyunho9877.jpahibernate.entity.Student;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -30,5 +31,12 @@ class StudentRepositoryTest {
     }
 
 
+    @Test
+    @Transactional
+    void retrievePassportAndAssociatedStudent() {
+        Passport passport = em.find(Passport.class, 40001L);
+        logger.info("passport -> {}", passport);
+        logger.info("student -> {}", passport.getStudent());
+    }
 
 }
