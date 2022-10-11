@@ -7,6 +7,25 @@ values (10002, 'Spring in 50 Steps', LOCALTIMESTAMP, LOCALTIMESTAMP);
 insert into course(id, name, created_at, modified_at)
 values (10003, 'Spring Boot in 50 Steps', LOCALTIMESTAMP, LOCALTIMESTAMP);
 
+insert into course(id, name, created_at, modified_at)
+values (10004, 'Dummy', LOCALTIMESTAMP, LOCALTIMESTAMP);
+
+insert into course(id, name, created_at, modified_at)
+values (10005, 'Dummy2', LOCALTIMESTAMP, LOCALTIMESTAMP);
+
+insert into course(id, name, created_at, modified_at)
+values (10006, 'Dummy3', LOCALTIMESTAMP, LOCALTIMESTAMP);
+
+insert into course(id, name, created_at, modified_at)
+values (10007, 'Dummy4', LOCALTIMESTAMP, LOCALTIMESTAMP);
+
+insert into course(id, name, created_at, modified_at)
+values (10008, 'Dummy5', LOCALTIMESTAMP, LOCALTIMESTAMP);
+
+insert into course(id, name, created_at, modified_at)
+values (10009, 'Dummy6', LOCALTIMESTAMP, LOCALTIMESTAMP);
+
+
 insert into passport(id, number)
 values (40001, 'E123456');
 
