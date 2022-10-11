@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.util.List;
 
 @SpringBootTest
@@ -71,4 +72,39 @@ public class JPQLTest {
     //between 100 and 1000
     //is null
     //upper, lower, trim, length
+
+
+    // join -> select s, c from student s join c.courses c
+    // left join => select c,s from course c left join c.students s
+    // cross join -> select c,s from course c, student s
+    // 3 and 4 -> 3*4 = 12 rows
+    @Test
+    public void join() {
+        Query query = em.createQuery("select c,s from Course c join c.students s");
+        List<Object[]> resultList = query.getResultList();
+        logger.info("result -> {}", resultList.size());
+        for (Object[] result : resultList) {
+            logger.info("Course {} Student {}", result[0], result[1]);
+        }
+    }
+
+    @Test
+    public void left_join() {
+        Query query = em.createQuery("select c,s from Course c left join c.students s");
+        List<Object[]> resultList = query.getResultList();
+        logger.info("result -> {}", resultList.size());
+        for (Object[] result : resultList) {
+            logger.info("Course {} Student {}", result[0], result[1]);
+        }
+    }
+
+    @Test
+    public void cross_join() {
+        Query query = em.createQuery("select c,s from Course c, Student s");
+        List<Object[]> resultList = query.getResultList();
+        logger.info("result -> {}", resultList.size());
+        for (Object[] result : resultList) {
+            logger.info("Course {} Student {}", result[0], result[1]);
+        }
+    }
 }
