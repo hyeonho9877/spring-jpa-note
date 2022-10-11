@@ -34,4 +34,12 @@ public class JPQLTest {
         List resultList = em.createNamedQuery("query_get_100_step_courses").getResultList();
         logger.info("select c from course c -> {}", resultList);
     }
+
+    @Test
+    void jpql_courses_without_students() {
+        List<Course> resultList = em.createQuery("select c from Course c where c.students is empty", Course.class).getResultList();
+        logger.info("result -> {}", resultList);
+    }
+
+
 }
