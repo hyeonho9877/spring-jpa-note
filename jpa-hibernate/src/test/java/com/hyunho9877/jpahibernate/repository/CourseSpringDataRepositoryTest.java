@@ -65,4 +65,14 @@ class CourseSpringDataRepositoryTest {
         logger.info("second content -> {}", secondContent);
     }
 
+    @Test
+    void findByName() {
+        logger.info("find by name -> {}", repository.findByName("JPA in 50 Steps"));
+    }
+
+    @Test
+    void countByName() {
+        logger.info("count by name -> {}", repository.countByName("JPA in 50 Steps"));
+    }
+
 }
