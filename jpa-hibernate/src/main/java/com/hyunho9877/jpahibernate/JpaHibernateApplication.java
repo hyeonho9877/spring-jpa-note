@@ -27,7 +27,8 @@ public class JpaHibernateApplication {
     @Bean
     public CommandLineRunner commandLineRunner() {
         return args -> {
-            studentRepository.saveStudentWithPassport();
+            //studentRepository.saveStudentWithPassport();
+            courseRepository.addReviewForCourse();
         };
     }
 
