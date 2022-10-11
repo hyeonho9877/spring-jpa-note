@@ -35,3 +35,15 @@ values (50002, '4', 'wonderful course', 10001);
 
 insert into review(id, rating, description, course_id)
 values (50003, '5', 'good course', 10003);
+
+insert into enroll(student, course)
+values (20001, 10001);
+
+insert into enroll(student, course)
+values (20002, 10001);
+
+insert into enroll(student, course)
+values (20003, 10001);
+
+insert into enroll(student, course)
+values (20001, 10003);
