@@ -1,11 +1,10 @@
 package com.hyunho9877.jpahibernate.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "EmployeeType")
 public abstract class Employee {
     @Id
     @GeneratedValue
