@@ -9,10 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.List;
 
 @SpringBootTest
@@ -94,4 +91,49 @@ public class CriteriaQueryTest {
         logger.info("result -> {}", resultList);
     }
 
+    @Test
+    public void criteria_query_join() {
+        // select c from course c join c.students s
+        // 1. use criteria builder to create a criteria query
+        // returning the expected result object
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Course> cq = cb.createQuery(Course.class);
+
+        // 2. define roots for tables which are involved in the query
+        Root<Course> courseRoot = cq.from(Course.class);
+
+        // 3. define predicates etc using criteria building
+        Join<Object, Object> join = courseRoot.join("students");
+
+        // 4. add predicates etc to the criteria query
+
+        // 5. build the typed query using the entity manager and criteria query
+        TypedQuery<Course> query = em.createQuery(cq.select(courseRoot));
+
+        List<Course> resultList = query.getResultList();
+        logger.info("result -> {}", resultList);
+    }
+
+    @Test
+    public void criteria_query_left_join() {
+        // select c from course c join c.students s
+        // 1. use criteria builder to create a criteria query
+        // returning the expected result object
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Course> cq = cb.createQuery(Course.class);
+
+        // 2. define roots for tables which are involved in the query
+        Root<Course> courseRoot = cq.from(Course.class);
+
+        // 3. define predicates etc using criteria building
+        Join<Object, Object> join = courseRoot.join("students", JoinType.LEFT);
+
+        // 4. add predicates etc to the criteria query
+
+        // 5. build the typed query using the entity manager and criteria query
+        TypedQuery<Course> query = em.createQuery(cq.select(courseRoot));
+
+        List<Course> resultList = query.getResultList();
+        logger.info("result -> {}", resultList);
+    }
 }
