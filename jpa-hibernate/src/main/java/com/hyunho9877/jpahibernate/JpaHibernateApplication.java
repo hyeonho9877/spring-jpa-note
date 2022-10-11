@@ -1,5 +1,6 @@
 package com.hyunho9877.jpahibernate;
 
+import com.hyunho9877.jpahibernate.entity.Course;
 import com.hyunho9877.jpahibernate.repository.CourseRepository;
 import com.hyunho9877.jpahibernate.repository.StudentRepository;
 import org.slf4j.Logger;
@@ -27,7 +28,13 @@ public class JpaHibernateApplication {
     @Bean
     public CommandLineRunner commandLineRunner() {
         return args -> {
-            studentRepository.saveStudentWithPassport();
+//            ArrayList<Review> reviews = new ArrayList<>();
+            //studentRepository.saveStudentWithPassport();
+            //courseRepository.addHardcodedReviewForCourse();
+//            reviews.add(new Review("5", "great hands on stuff"));
+//            reviews.add(new Review("5", "hatsoff"));
+//            courseRepository.addReviewForCourse(10003L, reviews);
+            studentRepository.insertCourseToStudent(20001L, new Course("MSA in 100 Steps"));
         };
     }
 

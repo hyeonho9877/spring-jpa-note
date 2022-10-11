@@ -1,5 +1,6 @@
 package com.hyunho9877.jpahibernate.repository;
 
+import com.hyunho9877.jpahibernate.entity.Course;
 import com.hyunho9877.jpahibernate.entity.Passport;
 import com.hyunho9877.jpahibernate.entity.Student;
 import org.junit.jupiter.api.Test;
@@ -39,4 +40,20 @@ class StudentRepositoryTest {
         logger.info("student -> {}", passport.getStudent());
     }
 
+
+    @Test
+    @Transactional
+    void retrieveStudentAndCourses() {
+        Student student = em.find(Student.class, 20001L);
+        logger.info("student -> {}", student);
+        logger.info("courses -> {}", student.getCourses());
+    }
+
+    @Test
+    @Transactional
+    void retrieveCourseAndStudents() {
+        Course course = em.find(Course.class, 10001L);
+        logger.info("course -> {}", course);
+        logger.info("students -> {}", course.getStudents());
+    }
 }

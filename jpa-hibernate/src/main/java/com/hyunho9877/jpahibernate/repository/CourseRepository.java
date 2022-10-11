@@ -1,6 +1,7 @@
 package com.hyunho9877.jpahibernate.repository;
 
 import com.hyunho9877.jpahibernate.entity.Course;
+import com.hyunho9877.jpahibernate.entity.Review;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -41,4 +43,37 @@ public class CourseRepository {
         Course courseResult = findById(10001L);
         courseResult.setName("course updated");
     }
+
+    public void addHardcodedReviewForCourse() {
+        //get course 10003
+        Course course = em.find(Course.class, 10003L);
+        logger.info("course reviews -> {}", course.getReviews());
+        //add 2 reviews to it
+        Review review = new Review("5", "great hands on stuff");
+        Review review1 = new Review("5", "hatsoff");
+        //course.addReview(); setting relationship
+        course.addReview(review);
+        review.setCourse(course);
+        course.addReview(review1);
+        review1.setCourse(course);
+        //save it to database
+
+        em.persist(review);
+        em.persist(review1);
+    }
+
+    public void addReviewForCourse(Long courseID, List<Review> reviews) {
+        //get course 10003
+        Course course = em.find(Course.class, courseID);
+        logger.info("course reviews -> {}", course.getReviews());
+        for (Review review : reviews) {
+            course.addReview(review);
+            review.setCourse(course);
+            em.persist(review);
+        }
+    }
+
+
+
+
 }
