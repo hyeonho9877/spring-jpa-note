@@ -25,11 +25,19 @@ public class CriteriaQueryTest {
     @Test
     public void criteria_query() {
         // select c from course c
+        // 1. use criteria builder to create a criteria query
+        // returning the expected result object
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Course> cq = cb.createQuery(Course.class);
 
+        // 2. define roots for tables which are involved in the query
         Root<Course> courseRoot = cq.from(Course.class);
 
+        // 3. define predicates etc using criteria building
+
+        // 4. add predicates etc to the criteria query
+
+        // 5. build the typed query using the entity manager and criteria query
         TypedQuery<Course> query = em.createQuery(cq.select(courseRoot));
 
         List<Course> resultList = query.getResultList();
