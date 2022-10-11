@@ -18,6 +18,11 @@ public class Student {
     private Passport passport;
 
     @ManyToMany
+    @JoinTable(
+            name = "Enroll",
+            joinColumns = @JoinColumn(name = "student"),
+            inverseJoinColumns = @JoinColumn(name = "course")
+    )
     private List<Course> courses = new ArrayList<>();
 
     protected Student() {
