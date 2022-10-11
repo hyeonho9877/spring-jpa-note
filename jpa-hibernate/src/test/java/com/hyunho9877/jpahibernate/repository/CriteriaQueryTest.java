@@ -68,4 +68,30 @@ public class CriteriaQueryTest {
         List<Course> resultList = query.getResultList();
         logger.info("result -> {}", resultList);
     }
+
+    @Test
+    public void criteria_query_courses_with_students() {
+        // select c from course c where c.students is empty
+
+        // 1. use criteria builder to create a criteria query
+        // returning the expected result object
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Course> cq = cb.createQuery(Course.class);
+
+        // 2. define roots for tables which are involved in the query
+        Root<Course> courseRoot = cq.from(Course.class);
+
+        // 3. define predicates etc using criteria building
+        Predicate empty = cb.isEmpty(courseRoot.get("students"));
+
+        // 4. add predicates etc to the criteria query
+        cq.where(empty);
+
+        // 5. build the typed query using the entity manager and criteria query
+        TypedQuery<Course> query = em.createQuery(cq.select(courseRoot));
+
+        List<Course> resultList = query.getResultList();
+        logger.info("result -> {}", resultList);
+    }
+
 }
