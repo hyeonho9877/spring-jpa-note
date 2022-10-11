@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -43,7 +44,7 @@ public class CourseRepository {
         courseResult.setName("course updated");
     }
 
-    public void addReviewForCourse() {
+    public void addHardcodedReviewForCourse() {
         //get course 10003
         Course course = em.find(Course.class, 10003L);
         logger.info("course reviews -> {}", course.getReviews());
@@ -60,4 +61,19 @@ public class CourseRepository {
         em.persist(review);
         em.persist(review1);
     }
+
+    public void addReviewForCourse(Long courseID, List<Review> reviews) {
+        //get course 10003
+        Course course = em.find(Course.class, courseID);
+        logger.info("course reviews -> {}", course.getReviews());
+        for (Review review : reviews) {
+            course.addReview(review);
+            review.setCourse(course);
+            em.persist(review);
+        }
+    }
+
+
+
+
 }
