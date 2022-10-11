@@ -45,7 +45,8 @@ public class JpaHibernateApplication {
 //            studentRepository.insertCourseToStudent(20001L, new Course("MSA in 100 Steps"));
             employeeRepository.insert(new FullTimeEmployee("Jack", new BigDecimal("10000")));
             employeeRepository.insert(new PartTimeEmployee("Jill", new BigDecimal("50")));
-            logger.info("employees -> {}", employeeRepository.findAll());
+            logger.info("employees -> {}", employeeRepository.findAllPartTime());
+            logger.info("employees -> {}", employeeRepository.findAllFullTime());
         };
     }
 

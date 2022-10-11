@@ -27,7 +27,11 @@ public class EmployeeRepository {
 
     //retrieve all employees;
 
-    public List<Employee> findAll() {
-        return em.createQuery("select e from Employee e", Employee.class).getResultList();
+    public List<Employee> findAllPartTime() {
+        return em.createQuery("select p from PartTimeEmployee p", Employee.class).getResultList();
+    }
+
+    public List<Employee> findAllFullTime() {
+        return em.createQuery("select f from FullTimeEmployee f", Employee.class).getResultList();
     }
 }
