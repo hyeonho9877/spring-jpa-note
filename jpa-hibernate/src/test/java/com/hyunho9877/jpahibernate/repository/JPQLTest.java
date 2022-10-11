@@ -1,6 +1,7 @@
 package com.hyunho9877.jpahibernate.repository;
 
 import com.hyunho9877.jpahibernate.entity.Course;
+import com.hyunho9877.jpahibernate.entity.Student;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,4 +60,15 @@ public class JPQLTest {
         logger.info("result -> {}", resultList);
     }
 
+    @Test
+    void jpql_students_with_passport_in_a_certain_pattern() {
+        List<Student> resultList = em.createQuery("select s from Student s where s.passport.number like 'E%'", Student.class).getResultList();
+        logger.info("result -> {}", resultList);
+    }
+
+
+    // like
+    //between 100 and 1000
+    //is null
+    //upper, lower, trim, length
 }
