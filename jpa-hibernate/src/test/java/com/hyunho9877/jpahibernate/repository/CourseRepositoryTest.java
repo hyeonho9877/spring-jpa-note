@@ -1,6 +1,7 @@
 package com.hyunho9877.jpahibernate.repository;
 
 import com.hyunho9877.jpahibernate.entity.Course;
+import com.hyunho9877.jpahibernate.entity.Review;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,6 +10,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.persistence.EntityManager;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -20,6 +24,9 @@ class CourseRepositoryTest {
 
     @Autowired
     private CourseRepository repository;
+
+    @Autowired
+    EntityManager em;
 
     @BeforeEach
     void setUp() {
@@ -57,9 +64,24 @@ class CourseRepositoryTest {
         Course course1 = repository.findById(10001L);
         assertEquals("JPA in 50 Steps - Updated", course1.getName());
     }
+
     @Test
     @DirtiesContext
     void playWithEntityManager() {
         repository.playWithEntityManager();
+    }
+
+    @Test
+    @Transactional
+    void retrieveReviewsForCourse() {
+        Course course = repository.findById(10001L);
+        logger.info("{}", course.getReviews());
+    }
+
+    @Test
+    @Transactional
+    void retrieveCourseForReview() {
+        Review review = em.find(Review.class, 50001L);
+        logger.info("{}", review.getCourse());
     }
 }
