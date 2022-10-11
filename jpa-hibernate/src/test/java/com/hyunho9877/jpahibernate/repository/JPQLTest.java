@@ -41,5 +41,22 @@ public class JPQLTest {
         logger.info("result -> {}", resultList);
     }
 
+    @Test
+    void jpql_courses_with_at_least_2_students() {
+        List<Course> resultList = em.createQuery("select c from Course c where size(c.students) >= 2", Course.class).getResultList();
+        logger.info("result -> {}", resultList);
+    }
+
+    @Test
+    void jpql_courses_ordered_By_students() {
+        List<Course> resultList = em.createQuery("select c from Course c order by size(c.students) desc", Course.class).getResultList();
+        logger.info("result -> {}", resultList);
+    }
+
+    @Test
+    void jpql_courses_ordered_By_students_desc() {
+        List<Course> resultList = em.createQuery("select c from Course c order by size(c.students) desc", Course.class).getResultList();
+        logger.info("result -> {}", resultList);
+    }
 
 }
