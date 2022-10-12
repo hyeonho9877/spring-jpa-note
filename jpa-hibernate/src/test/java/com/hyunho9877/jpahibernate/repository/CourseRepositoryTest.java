@@ -84,4 +84,13 @@ class CourseRepositoryTest {
         Review review = em.find(Review.class, 50001L);
         logger.info("{}", review.getCourse());
     }
+
+    @Test
+    @Transactional
+    void findById_firstLevelCache() {
+        Course course = repository.findById(10001L);
+        logger.info("first course retrieved {}", course);
+        Course course1 = repository.findById(10001L);
+        logger.info("first course retrieved {}", course);
+    }
 }
