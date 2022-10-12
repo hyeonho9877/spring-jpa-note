@@ -1,5 +1,6 @@
 package com.hyunho9877.jpahibernate.repository;
 
+import com.hyunho9877.jpahibernate.entity.Address;
 import com.hyunho9877.jpahibernate.entity.Course;
 import com.hyunho9877.jpahibernate.entity.Passport;
 import com.hyunho9877.jpahibernate.entity.Student;
@@ -55,5 +56,15 @@ class StudentRepositoryTest {
         Course course = em.find(Course.class, 10001L);
         logger.info("course -> {}", course);
         logger.info("students -> {}", course.getStudents());
+    }
+
+    @Test
+    @Transactional
+    void setAddressDetails() {
+        Student student = em.find(Student.class, 20001L);
+        student.setAddress(new Address("line1", "line2", "city"));
+        em.flush();
+        logger.info("student -> {}", student);
+        logger.info("student passport -> {}", student.getPassport());
     }
 }
