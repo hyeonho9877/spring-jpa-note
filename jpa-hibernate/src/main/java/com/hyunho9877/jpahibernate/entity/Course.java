@@ -1,10 +1,10 @@
 package com.hyunho9877.jpahibernate.entity;
 
 import com.hyunho9877.jpahibernate.config.CachingConfig;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.*;
 
+import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -20,6 +20,8 @@ import java.util.List;
 //@Table(name = "CourseDetails")
 @Cacheable
 @org.hibernate.annotations.Cache(region = CachingConfig.DB_CACHE, usage = CacheConcurrencyStrategy.READ_WRITE)
+@SQLDelete(sql = "update course set is_deleted = true where id = ?")
+@Where(clause = "is_deleted = false")
 public class Course {
 
     @Id
@@ -39,6 +41,8 @@ public class Course {
     private LocalDateTime createdAt;
     @UpdateTimestamp
     private LocalDateTime modifiedAt;
+
+    private boolean isDeleted;
 
     protected Course() {
     }
@@ -81,6 +85,14 @@ public class Course {
 
     public void removeStudent(Student student) {
         this.students.remove(student);
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
     }
 
     @Override
