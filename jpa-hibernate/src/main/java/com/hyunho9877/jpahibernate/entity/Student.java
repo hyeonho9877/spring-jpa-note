@@ -20,6 +20,9 @@ public class Student {
     @JsonIgnore
     private Passport passport;
 
+    @Embedded
+    private Address address;
+
     @ManyToMany
     @JoinTable(
             name = "Enroll",
@@ -65,6 +68,14 @@ public class Student {
 
     public void removeCourse(Course course) {
         this.courses.remove(course);
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @Override

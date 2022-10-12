@@ -1,29 +1,11 @@
-insert into course(id, name, created_at, modified_at)
-values (10001, 'JPA in 50 Steps', LOCALTIMESTAMP, LOCALTIMESTAMP);
+insert into course(id, name, created_at, modified_at, is_deleted)
+values (10001, 'JPA in 50 Steps', LOCALTIMESTAMP, LOCALTIMESTAMP, false);
 
-insert into course(id, name, created_at, modified_at)
-values (10002, 'Spring in 50 Steps', LOCALTIMESTAMP, LOCALTIMESTAMP);
+insert into course(id, name, created_at, modified_at, is_deleted)
+values (10002, 'Spring in 50 Steps', LOCALTIMESTAMP, LOCALTIMESTAMP, false);
 
-insert into course(id, name, created_at, modified_at)
-values (10003, 'Spring Boot in 50 Steps', LOCALTIMESTAMP, LOCALTIMESTAMP);
-
-insert into course(id, name, created_at, modified_at)
-values (10004, 'Dummy', LOCALTIMESTAMP, LOCALTIMESTAMP);
-
-insert into course(id, name, created_at, modified_at)
-values (10005, 'Dummy2', LOCALTIMESTAMP, LOCALTIMESTAMP);
-
-insert into course(id, name, created_at, modified_at)
-values (10006, 'Dummy3', LOCALTIMESTAMP, LOCALTIMESTAMP);
-
-insert into course(id, name, created_at, modified_at)
-values (10007, 'Dummy4', LOCALTIMESTAMP, LOCALTIMESTAMP);
-
-insert into course(id, name, created_at, modified_at)
-values (10008, 'Dummy5', LOCALTIMESTAMP, LOCALTIMESTAMP);
-
-insert into course(id, name, created_at, modified_at)
-values (10009, 'Dummy6', LOCALTIMESTAMP, LOCALTIMESTAMP);
+insert into course(id, name, created_at, modified_at, is_deleted)
+values (10003, 'Spring Boot in 50 Steps', LOCALTIMESTAMP, LOCALTIMESTAMP, false);
 
 
 insert into passport(id, number)
@@ -47,13 +29,13 @@ values (20003, 'Jane', 40003);
 
 
 insert into review(id, rating, description, course_id)
-values (50001, '5', 'great course', 10001);
+values (50001, 'FIVE', 'great course', 10001);
 
 insert into review(id, rating, description, course_id)
-values (50002, '4', 'wonderful course', 10001);
+values (50002, 'FOUR', 'wonderful course', 10001);
 
 insert into review(id, rating, description, course_id)
-values (50003, '5', 'good course', 10003);
+values (50003, 'FIVE', 'good course', 10003);
 
 insert into enroll(student, course)
 values (20001, 10001);
