@@ -2,6 +2,8 @@ package com.hyunho9877.jpahibernate.entity;
 
 import com.hyunho9877.jpahibernate.config.CachingConfig;
 import org.hibernate.annotations.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.persistence.Entity;
 import javax.persistence.NamedQuery;
@@ -23,6 +25,8 @@ import java.util.List;
 @SQLDelete(sql = "update course set is_deleted = true where id = ?")
 @Where(clause = "is_deleted = false")
 public class Course {
+
+    private static Logger logger = LoggerFactory.getLogger(Course.class);
 
     @Id
     @GeneratedValue
@@ -101,5 +105,11 @@ public class Course {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    @PreRemove
+    private void preRemove() {
+        logger.info("Setting isDeleted to True");
+        this.isDeleted = true;
     }
 }
